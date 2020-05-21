@@ -73,10 +73,10 @@ def get_state_district_wise_data() -> 'JSON':
                     deceased = deceased + int(dist['deceased'])
                     confirmed = confirmed + int(dist['confirmed'])
                     recoverd = recoverd + int(dist['recovered'])
-                temp_dict['active'] = active
-                temp_dict['deceased'] = deceased
-                temp_dict['recovered'] = recoverd
-                temp_dict['confirmed'] = confirmed
+                temp_dict['active'] = str(active)
+                temp_dict['deceased'] = str(deceased)
+                temp_dict['recovered'] = str(recoverd)
+                temp_dict['confirmed'] = str(confirmed)
                 state_data.append(temp_dict)
 
     ret_list = []
@@ -131,4 +131,3 @@ def get_hospital_beds() -> "JSON":
 
 # if __name__ == "__main__":
 #     lst = get_state_district_wise_data()
-    

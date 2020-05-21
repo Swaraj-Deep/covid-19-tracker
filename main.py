@@ -41,5 +41,17 @@ def report() -> 'html':
     return render_template('report.html', the_title='View Reports')
 
 
+@app.route('/__get_map_data__', methods=['POST'])
+def get_map_data() -> 'json':
+    try:
+        res_lst = datapoint.scraper.get_state_district_wise_data()
+        response = {
+            'data': res_lst[2]
+        }
+    except Exception as e:
+        print(e)
+    return make_response(jsonify(response), 200)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
