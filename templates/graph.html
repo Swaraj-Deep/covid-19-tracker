@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block script %}
+<script src="/static/js/d3.min.js"></script>
+<!-- <script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script> -->
+
+{% endblock %}
+
+{% block body %}
+<!-- <svg id="my_dataviz" width="900" height="500"></svg> -->
+    <div class="container text-center map_container">
+        <svg class="px-2 map" id="India_map">
+
+        </svg>
+    </div>
+<script src="/static/js/json_to_svg.js"></script>
+{% endblock %}
+
+{% block jquery %}
+
+
+{% endblock %}

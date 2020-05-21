@@ -1,0 +1,121 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <p class="justify-content-center">
+                Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.
+            </p>
+            <p>
+                Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and
+                recover without requiring special treatment. Older people, and those with underlying medical problems
+                like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to
+                develop serious illness.
+            </p>
+            <p>
+                The best way to prevent and slow down transmission is be well informed about the COVID-19 virus, the
+                disease it causes and how it spreads. Protect yourself and others from infection by washing your hands
+                or using an alcohol based rub frequently and not touching your face.
+            </p>
+            <p>
+                The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an
+                infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for
+                example, by coughing into a flexed elbow).
+            </p>
+            <p>
+                At this time, there are no specific vaccines or treatments for COVID-19. However, there are many ongoing
+                clinical trials evaluating potential treatments.
+            </p>
+            <p>
+                Here is the Summary of number of covid-19 cases in India.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-hover table-dark rounded table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Total Cases</th>
+                        <th scope="col">Confirmed Cases Indian</th>
+                        <th scope="col">Confirmed Cases Foreign</th>
+                        <th scope="col">Discharged</th>
+                        <th scope="col">Deaths</th>
+                        <th scope="col">Location Unidentified</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for key, value in official_data.items() %}
+                        <td> {{ value }} </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-hover table-dark rounded table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Source</th>
+                        <th scope="col">Total Cases</th>
+                        <th scope="col">Recovered</th>
+                        <th scope="col">Deaths</th>
+                        <th scope="col">Active</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for key, value in unofficial_data.items() %}
+                        <td> {{ value }} </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm text-center py-3">
+            <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseStateTable"
+                aria-expanded="false" aria-controls="collapseStateTable">
+                View State Wise Data
+            </button>
+            <div class="collapse pt-4" id="collapseStateTable">
+                <table class="table table-hover table-dark rounded table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Confirmed Cases Indian</th>
+                            <th scope="col">Discharged</th>
+                            <th scope="col">Deaths</th>
+                            <th scope="col">Confirmed Cases Foreign</th>
+                            <th scope="col">Total Confirmed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for state in regional_data %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td> {{ state.loc }} </td>
+                            <td> {{ state.confirmedCasesIndian }} </td>
+                            <td> {{ state.discharged }} </td>
+                            <td> {{ state.deaths }} </td>
+                            <td> {{ state.confirmedCasesForeign }} </td>
+                            <td> {{ state.totalConfirmed }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block jquery %}
+
+{% endblock %}

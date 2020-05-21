@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <p class="font-weight-bold">
+                This section provides you the information about the resources in your cities.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-hover table-dark rounded table-responsive-sm px-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">Total Samples Tested</th>
+                        <th scope="col">Total Individuals Tested</th>
+                        <th scope="col">Total Positive Cases</th>
+                        <th scope="col">Deaths</th>
+                        <th scope="col">Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for key, value in testing_data.items() %}
+                        <td> {{ value }} </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-hover table-dark rounded table-responsive-sm px-3">
+                <thead>
+                    <tr>
+                        <th scope="col">Rutal Hospitals</th>
+                        <th scope="col">Rural Beds</th>
+                        <th scope="col">Urban Hospitals</th>
+                        <th scope="col">Urban Beds</th>
+                        <th scope="col">Total Hospitals</th>
+                        <th scope="col">Total Beds</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for key, value in hospital_data.items() %}
+                        <td> {{ value }} </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm text-center py-3">
+            <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseStateTable"
+                aria-expanded="false" aria-controls="collapseStateTable">
+                Click to view details
+            </button>
+            <div class="collapse pt-4" id="collapseStateTable">
+                <table class="table table-hover table-dark rounded table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Name of the Organization</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in detailed_data %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td> {{ data.category }} </td>
+                            <td> {{ data.city }} </td>
+                            <td> {{ data.nameoftheorganisation }} </td>
+                            <td> {{ data.phonenumber }} </td>
+                            <td> {{ data.state }} </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block jquery %}
+
+{% endblock %}

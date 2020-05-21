@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <p class="font-weight-bold">
+                Below is the latest information on the number of covid-19 cases in India which are reported today.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-hover table-dark rounded table-responsive-sm px-3">
+                <thead>
+                    <tr>
+                        <th scope="col">District</th>
+                        <th scope="col">Confirmed</th>
+                        <th scope="col">Deceased</th>
+                        <th scope="col">Recovered</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in delta_data %}
+                    <tr>
+                        <td> {{ data.district }} </td>
+                        <td> {{ data.delta.confirmed }} </td>
+                        <td> {{ data.delta.deceased }} </td>
+                        <td> {{ data.delta.recovered }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block jquery %}
+
+{% endblock %}

@@ -1,0 +1,40 @@
+body, .sticky-footer-wrapper {
+   min-height:100vh;
+}
+
+.flex-fill {
+   flex:1 1 auto;
+}
+
+path {
+   fill: #ccc;
+   stroke: #fff;
+   stroke-linejoin: round;
+}
+
+.map_container {
+   display: flex; 
+   justify-content: center;
+   display: inline-block;
+   position: relative;
+   vertical-align: top;
+   margin: 0 auto;
+}
+ 
+.India_svg {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.tooltip-donut {
+   position: absolute;
+   text-align: center;
+   background: #FFFFFF;
+   color: #313639;
+   border: 1px solid #313639;
+   border-radius: 8px;
+   pointer-events: none;
+   font-size: 1.0rem;
+}
