@@ -5,10 +5,8 @@ $(document).ready(function () {
 
     // Div for tool tip hover effect
     var tooltip_div = d3.select("#tooltip")
-        .attr("class", "tooltip-donut")
+        .attr("class", "tooltip-data")
         .style("opacity", 0);
-    // .style("left","30px")
-    // .style("top", "35px");
 
     var svg = d3.select("#India_map")
         .attr("width", width)
@@ -79,13 +77,15 @@ $(document).ready(function () {
                                     .duration(200)
                                     .style("opacity", .65)
                                     .style("stroke", "black");
-                                var div_tooltip = d3.select(".tooltip-donut");
+                                div_tooltip = d3.select(".tooltip-data");
                                 var message_div = d3.select(this);
-                                var message = "<p>" + message_div.attr("statename") + "<br> Active Cases: " + message_div.attr("active") + "<br>Recovered: " + message_div.attr("recovered") + "<br>Deceased: " + message_div.attr("deceased") + "</p>";
+                                var message = "<p>" + message_div.attr("statename") + "<br> Active Cases: " + message_div.attr("active") + "<br>Recovered: " + message_div.attr("recovered") + "<br>Deaths: " + message_div.attr("deceased") + "<br>" + "</p>";
                                 div_tooltip.transition()
                                     .duration(50)
                                     .style("opacity", 1);
                                 div_tooltip.html(message);
+                                    // .style("left", (min (d3.event.pageX, 0) + 5) + "px")
+                                    // .style("top", (d3.event.pageY - 28) + "px");
                             })
                             .on("mouseleave", function () {
                                 d3.selectAll(".states")
@@ -97,7 +97,7 @@ $(document).ready(function () {
                                     .duration(200)
                                     .style("stroke", "#fff")
                                     .style("opacity", .95);
-                                var div_tooltip = d3.select(".tooltip-donut");
+                                div_tooltip = d3.select(".tooltip-data");
                                 div_tooltip.transition()
                                     .duration('50')
                                     .style("opacity", 0);
@@ -124,6 +124,7 @@ $(document).ready(function () {
             chart.attr("height", targetWidth / aspect);
         });
 
+    // Function for filling the data
     function get_active_status(state_name) {
         for (i in state_data) {
             if (state_data[i]["state"] == state_name) {
@@ -154,9 +155,9 @@ $(document).ready(function () {
     };
     function get_color(active_cases) {
         var cases = parseInt(active_cases, 10);
-        if (cases >= 0 && cases <= 500) {
-            return "#FFA07A";
-        } else if (cases >= 501 && cases <= 1000) {
+        if (cases >= 0 && cases <= 30) {
+            return "#F19CBB"
+        } else if (cases >= 31 && cases <= 1000) {
             return "#CD5C5C";
         } else if (cases >= 1001 && cases <= 3000) {
             return "#DC143C";
