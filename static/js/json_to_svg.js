@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-    var width = 800;
-    var height = 500;
+    var width = 900;
+    var height = 550;
 
     // Div for tool tip hover effect
-    var tooltip_div = d3.select("body").append("div")
+    var tooltip_div = d3.select("#tooltip")
         .attr("class", "tooltip-donut")
         .style("opacity", 0);
     // .style("left","30px")
@@ -22,6 +22,7 @@ $(document).ready(function () {
     var path = d3.geoPath().projection(projection);
 
     function show_alert(id, message, alert_type) {
+        console.log("HI");
         $(`#${id}`).html(`<div class="alert ${alert_type} alert-dismissable">${message}<button class="close" type="button" aria-hidden="true" data-dismiss="alert">&times;</button></div>`);
         $(".alert").fadeTo(5000, 500).slideUp(500, function () {
             $(".alert").remove();
@@ -41,7 +42,7 @@ $(document).ready(function () {
     }
 
     let data = {
-        'data': 'Send Titles'
+        'data': 'Send Map Data'
     };
     var state_data = []
     get_data('__get_map_data__', data).then(function (response) {
@@ -50,16 +51,24 @@ $(document).ready(function () {
             return false;
         } else if (response.status === 200) {
             response.json().then(function (data) {
-                state_data = data["data"]
-                console.log(state_data);
+                state_data = data["data"];
                 d3.json("/static/js/india_map.json", function (err, geojson) {
                     if (err) { console.log("Some Error Occured"); }
                     projection.fitSize([width, height], geojson);
                     var country = geojson["features"];
                     for (states of country.values()) {
+                        var state_name = states["properties"]["name"];
+                        var active = get_active_status(state_name);
+                        var deceased = get_deceased_status(state_name);
+                        var recovered = get_recovered_status(state_name);
+                        var confirmed = get_confirmed_status(state_name);
                         svg.append("path")
                             .attr("d", path(states))
-                            .attr("statename", states["properties"]["name"])
+                            .attr("statename", state_name)
+                            .attr("active", active)
+                            .attr("deceased", deceased)
+                            .attr("recovered", recovered)
+                            .attr("confirmed", confirmed)
                             .on("mouseover", function () {
                                 d3.selectAll(".states")
                                     .transition()
@@ -72,13 +81,11 @@ $(document).ready(function () {
                                     .style("stroke", "black");
                                 var div_tooltip = d3.select(".tooltip-donut");
                                 var message_div = d3.select(this);
-                                var message = "<p>" + message_div.attr("statename") + "<br>" + message_div.attr("active") + "<br>" + message_div.attr("recovered") + "</p>";
+                                var message = "<p>" + message_div.attr("statename") + "<br> Active Cases: " + message_div.attr("active") + "<br>Recovered: " + message_div.attr("recovered") + "<br>Deceased: " + message_div.attr("deceased") + "</p>";
                                 div_tooltip.transition()
                                     .duration(50)
                                     .style("opacity", 1);
-                                div_tooltip.html(message)
-                                    .style("left", (d3.event.pageX + 10) + "px")
-                                    .style("top", (d3.event.pageY - 15) + "px");
+                                div_tooltip.html(message);
                             })
                             .on("mouseleave", function () {
                                 d3.selectAll(".states")
@@ -96,18 +103,16 @@ $(document).ready(function () {
                                     .style("opacity", 0);
                             })
                             .style("opacity", .95)
+                            .style("fill", get_color(active))
                             .style("stroke-width", "2");
                     }
                 });
-
             });
         } else {
             show_alert(`alert-wrapper`, `Opps! It's our fault.`, `alert-danger`);
             return false;
         }
     });
-
-
 
     // Code for responsiveness
     var aspect = width / height,
@@ -119,4 +124,48 @@ $(document).ready(function () {
             chart.attr("height", targetWidth / aspect);
         });
 
+    function get_active_status(state_name) {
+        for (i in state_data) {
+            if (state_data[i]["state"] == state_name) {
+                return state_data[i]["active"];
+            }
+        }
+    };
+    function get_deceased_status(state_name) {
+        for (i in state_data) {
+            if (state_data[i]["state"] == state_name) {
+                return state_data[i]["deceased"];
+            }
+        }
+    };
+    function get_recovered_status(state_name) {
+        for (i in state_data) {
+            if (state_data[i]["state"] == state_name) {
+                return state_data[i]["recovered"];
+            }
+        }
+    };
+    function get_confirmed_status(state_name) {
+        for (i in state_data) {
+            if (state_data[i]["state"] == state_name) {
+                return state_data[i]["confirmed"];
+            }
+        }
+    };
+    function get_color(active_cases) {
+        var cases = parseInt(active_cases, 10);
+        if (cases >= 0 && cases <= 500) {
+            return "#FFA07A";
+        } else if (cases >= 501 && cases <= 1000) {
+            return "#CD5C5C";
+        } else if (cases >= 1001 && cases <= 3000) {
+            return "#DC143C";
+        } else if (cases >= 3001 && cases <= 8000) {
+            return "#FF4500";
+        } else if (cases >= 8001 && cases <= 15000) {
+            return "#B22222";
+        } else {
+            return "#800000";
+        }
+    }
 });

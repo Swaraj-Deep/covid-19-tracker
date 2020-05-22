@@ -31,10 +31,21 @@ path {
 .tooltip-donut {
    position: absolute;
    text-align: center;
-   background: #FFFFFF;
+   margin: 2px;
+   background: #ccc;
    color: #313639;
-   border: 1px solid #313639;
-   border-radius: 8px;
    pointer-events: none;
-   font-size: 1.0rem;
+}
+
+#legend {
+   padding: 1.5em 0 0 1.5em;
+}
+
+li.key {
+   border-top-width: 15px;
+   border-top-style: solid;
+   font-size: .75em;
+   width: 10%;
+   padding-left: 0;
+   padding-right: 0;
 }
