@@ -33,7 +33,8 @@ def resources() -> 'html':
 
 @app.route('/graph')
 def graph() -> 'html':
-    return render_template('graph.html', the_title='Draw Graphs')
+    get_list = datapoint.scraper.get_overall()
+    return render_template('graph.html', the_title='Draw Graphs', confirmed=get_list[1]["total"], active=get_list[1]["active"], recovered=get_list[1]["recovered"], deaths=get_list[1]["deaths"])
 
 
 @app.route('/report')
