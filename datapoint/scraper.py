@@ -133,5 +133,5 @@ def get_hospital_beds() -> "JSON":
         return ret_list
 
 
-if __name__ == "__main__":
-    lst = get_state_district_wise_data()
+# if __name__ == "__main__":
+#     lst = get_state_district_wise_data()

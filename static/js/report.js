@@ -18,8 +18,11 @@ $(document).ready(function () {
         });
     }
     if (localStorage.getItem("state_name")) {
-
-        localStorage.removeItem("state_name");
+        send_data = {
+            'Data': `${localStorage.getItem("state_name")}`
+        }
+        get_data ('__get_state_data_for_report__', send_data);
+        // localStorage.removeItem("state_name");
     } else {
         alert("Hello");
     }
