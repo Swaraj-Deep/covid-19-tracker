@@ -20,7 +20,6 @@ $(document).ready(function () {
     var path = d3.geoPath().projection(projection);
 
     function show_alert(id, message, alert_type) {
-        console.log("HI");
         $(`#${id}`).html(`<div class="alert ${alert_type} alert-dismissable">${message}<button class="close" type="button" aria-hidden="true" data-dismiss="alert">&times;</button></div>`);
         $(".alert").fadeTo(5000, 500).slideUp(500, function () {
             $(".alert").remove();
@@ -78,7 +77,7 @@ $(document).ready(function () {
                                     .style("stroke", "black");
                                 div_tooltip = d3.select(".tooltip-data");
                                 var message_div = d3.select(this);
-                                var message =' <p class="text-center">' + message_div.attr("statename") + '</p>' +'<p class="text-center text-danger font-weight-bold">' + "Confirmed: " + message_div.attr("confirmed")+ '</p>' + '<p class="text-center font-weight-bold" style="color:rgba(11, 31, 212, 0.705)"> Active:' + message_div.attr("active") + '</p>' + '<p class="text-center text-success font-weight-bold">' + "Recovered: " + message_div.attr("recovered") + '</p>' + '<p class="text-center text-secondary font-weight-bold">' + "Deaths: " + message_div.attr("deceased") + '</p>';
+                                var message = ' <p class="text-center">' + message_div.attr("statename") + '</p>' + '<p class="text-center text-danger font-weight-bold">' + "Confirmed: " + message_div.attr("confirmed") + '</p>' + '<p class="text-center font-weight-bold" style="color:rgba(11, 31, 212, 0.705)"> Active:' + message_div.attr("active") + '</p>' + '<p class="text-center text-success font-weight-bold">' + "Recovered: " + message_div.attr("recovered") + '</p>' + '<p class="text-center text-secondary font-weight-bold">' + "Deaths: " + message_div.attr("deceased") + '</p>';
                                 div_tooltip.transition()
                                     .duration(50)
                                     .style("opacity", 1);
@@ -100,8 +99,11 @@ $(document).ready(function () {
                                     .duration('50')
                                     .style("opacity", 0);
                             })
-                            .on("click", function (){
-                                
+                            .on("click", function () {
+                                var display_data = d3.select(this);
+                                var state_name = display_data.attr("statename");
+                                localStorage.setItem ("state_name", state_name);
+                                window.location = 'http://127.0.0.1:5000/report'
                             })
                             .style("opacity", .95)
                             .style("fill", get_color(active))

@@ -60,6 +60,13 @@ def get_map_data() -> 'json':
         print(e)
     return make_response(jsonify(response), 200)
 
+@app.route ('/__get_state_data_for_report__', methods=['POST'])
+def det_state_data_for_report () -> 'json':
+    try:
+        pass
+    except Exception as e:
+        print (e)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
