@@ -39,11 +39,14 @@ def get_state_district_wise_data() -> 'JSON':
     data = check_error(response, state_district_wise)
     if data != None:
         list_states = []
-        list_deltas = []
+        list_deltas_dist = []
         for states in data:
             temp_state = {}
             temp_state["state"] = states["state"]
+            list_deltas = []
             temp_district_data = []
+            temp_dist_deltas = {}
+            temp_dist_deltas["state"] = states["state"]
             for district_data in states["districtData"]:
                 temp = {}
                 temp_district = {}
@@ -58,6 +61,8 @@ def get_state_district_wise_data() -> 'JSON':
                 temp_district_data.append(temp_district)
                 temp_state["district_data"] = temp_district_data
             list_states.append(temp_state)
+            temp_dist_deltas["delta"] = list_deltas
+            list_deltas_dist.append (temp_dist_deltas)
         state_data = []
         for item in list_states:
             temp_dict = {}
@@ -79,7 +84,7 @@ def get_state_district_wise_data() -> 'JSON':
                 temp_dict['confirmed'] = str(confirmed)
                 state_data.append(temp_dict)
     ret_list = []
-    ret_list.append(list_deltas)
+    ret_list.append(list_deltas_dist)
     ret_list.append(list_states)
     ret_list.append(state_data)
     return ret_list
@@ -130,4 +135,3 @@ def get_hospital_beds() -> "JSON":
 
 if __name__ == "__main__":
     lst = get_state_district_wise_data()
-    # print (lst[0])
