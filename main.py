@@ -10,6 +10,9 @@ app = Flask(__name__)
 app.config['FILE_UPLOADS'] = os.getcwd() + '/static/uploads'
 app.secret_key = 'kldjlkmxcvioermklxjos90873489*&86*&I09'
 
+resources_summ = []
+detailed_resources_data = []
+hospital_beds = []
 
 @app.route('/')
 def dash_board() -> 'html':
@@ -25,9 +28,13 @@ def today_update() -> 'html':
 
 @app.route('/resources')
 def resources() -> 'html':
+    global resources_summ
     resources_summ = datapoint.scraper.get_testing()
+    global detailed_resources_data
     detailed_resources_data = datapoint.scraper.get_resources()["resources"]
-    hospital_beds = datapoint.scraper.get_hospital_beds()[0]
+    global hospital_beds
+    hospital_beds = datapoint.scraper.get_hospital_beds()
+    hospital_beds = hospital_beds[0]
     return render_template('resources.html', the_title='Resources', testing_data=resources_summ, detailed_data=detailed_resources_data, hospital_data=hospital_beds)
 
 

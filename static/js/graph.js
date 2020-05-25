@@ -100,6 +100,9 @@ $(document).ready(function () {
                                     .duration('50')
                                     .style("opacity", 0);
                             })
+                            .on("click", function (){
+                                
+                            })
                             .style("opacity", .95)
                             .style("fill", get_color(active))
                             .style("stroke-width", "2");
