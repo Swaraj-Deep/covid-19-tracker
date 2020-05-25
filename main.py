@@ -65,8 +65,9 @@ def get_map_data() -> 'json':
         print(e)
     return make_response(jsonify(response), 200)
 
-def state_delta (state_name) -> 'list':
-    state_name = state_name.lower ()
+
+def state_delta(state_name) -> 'list':
+    state_name = state_name.lower()
     district_data = datapoint.scraper.get_state_district_wise_data()
     district_data_delta = district_data[0]
     district_data_dict = {}
@@ -78,48 +79,33 @@ def state_delta (state_name) -> 'list':
     for items in state_data:
         if items['state'].lower() == state_name:
             district_data_dict["state_data"] = items
-    list_data.append (district_data_dict)
+    list_data.append(district_data_dict)
     return list_data
 
-# def return_state_data_report(state_name) -> 'list':
-#     state_name = state_name.lower()
-#     district_data = datapoint.scraper.get_state_district_wise_data()
-#     district_data_delta = district_data[0]
-#     list_data = []
-#     district_data_dict = {}
-#     resource_data_dict = {}
-#     for items in district_data_delta:
-#         if items["state"].lower() == state_name:
-#             district_data_dict["delta_data"] = items
-#     state_data = district_data[2]
-#     for items in state_data:
-#         if items['state'].lower() == state_name:
-#             district_data_dict["state_data"] = items
-#     list_data.append (district_data_dict)
-#     global detailed_resources_data
-#     if len(detailed_resources_data) == 0:
-#         detailed_resources_data = datapoint.scraper.get_resources()[
-#             "resources"]
-#     list_resoure_data = []
-#     for items in detailed_resources_data:
-#         if items["state"].lower () == state_name:
-#             list_resoure_data.append(items)
-#     resource_data_dict["resource"] = list_resoure_data
-#     list_data.append (resource_data_dict)
-#     global hospital_beds
-#     if len(hospital_beds) == 0:
-#         hospital_beds = datapoint.scraper.get_hospital_beds()
-#     hospital_beds = hospital_beds[0]
 
-#     print (list_data)
+def resource_state(state_name) -> 'list':
+    state_name = state_name.lower()
+    global detailed_resources_data
+    if len(detailed_resources_data) == 0:
+        detailed_resources_data = datapoint.scraper.get_resources()[
+            "resources"]
+    list_resource_data = []
+    for items in detailed_resources_data:
+        if items["state"].lower() == state_name:
+            list_resource_data.append(items)
+    return list_resource_data
+
 
 @app.route('/__get_state_data_for_report__', methods=['POST'])
 def det_state_data_for_report() -> 'json':
     try:
         state_name = request.json['Data']
-        response = {'data': 'ok'}
-        print(state_name)
-        print (state_delta(state_name))
+        response = {
+            'data_state': state_delta(state_name),
+            'data_resource': resource_state(state_name)
+        }
+        # print(state_delta(state_name))
+        # print(resource_state(state_name))
     except Exception as e:
         print(e)
     return make_response(jsonify(response), 200)

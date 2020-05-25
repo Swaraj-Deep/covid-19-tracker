@@ -21,13 +21,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for data in delta_data %}
+                    {% for item in delta_data %}
+                    {% for data in item.delta %}
                     <tr>
                         <td> {{ data.district }} </td>
                         <td> {{ data.delta.confirmed }} </td>
                         <td> {{ data.delta.deceased }} </td>
                         <td> {{ data.delta.recovered }} </td>
                     </tr>
+                    {% endfor %}
                     {% endfor %}
                 </tbody>
             </table>
