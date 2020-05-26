@@ -27,16 +27,16 @@ $(document).ready(function () {
                 return false;
             } else if (response.status === 200) {
                 response.json().then(function (data) {
-                    // state_report = data['data_state']
-                    // delta_data = state_report[0]['delta_data']
-                    // state_data = state_report[0]['state_data']
-                    // console.log(state_data);
-                    // for (i in delta_data['delta']) {
-                    //     console.log(delta_data['delta'][i]);
-                    // }
+                    state_report = data['data_state']
+                    delta_data = state_report[0]['delta_data']
+                    state_data = state_report[0]['state_data']
+                    console.log(state_data);
+                    for (i in delta_data['delta']) {
+                        console.log(delta_data['delta'][i]);
+                    }
                     resource_report = data['data_resource']
                     for (i in resource_report) {
-                        console.log (resource_report[i]);
+                        console.log(resource_report[i]);
                     }
                 });
             } else {
@@ -46,6 +46,6 @@ $(document).ready(function () {
         });
         // localStorage.removeItem("state_name");
     } else {
-        alert("Hello");
+        // alert("Hello");
     }
 });

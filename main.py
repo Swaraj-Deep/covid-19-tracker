@@ -104,8 +104,6 @@ def det_state_data_for_report() -> 'json':
             'data_state': state_delta(state_name),
             'data_resource': resource_state(state_name)
         }
-        # print(state_delta(state_name))
-        # print(resource_state(state_name))
     except Exception as e:
         print(e)
     return make_response(jsonify(response), 200)
