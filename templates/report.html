@@ -5,7 +5,7 @@
 
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" id="redirect" hidden="true">
     <div id="accordion px-8">
         <div class="row">
             <div class="col-sm py-2">
@@ -20,9 +20,21 @@
                     </div>
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            <p class="text-center">
-                                
+                        <div class="card-body font-weight-bold">
+                            <p class="text-center" id="state">
+
+                            </p>
+                            <p class="text-center text-danger" id="confirmed">
+
+                            </p>
+                            <p class="text-center" style="color:rgba(11, 31, 212, 0.705)" id="active">
+
+                            </p>
+                            <p class="text-center text-success" id="recovered">
+
+                            </p>
+                            <p class="text-center text-secondary" id="deaths">
+
                             </p>
                         </div>
                     </div>
@@ -40,22 +52,18 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            <table class="table table-hover table-dark table-responsive-md">
+                            <table class="table table-hover table-dark table-responsive" id="today_update">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">District</th>
+                                        <th scope="col">Confirmed</th>
+                                        <th scope="col">Recovered</th>
+                                        <th scope="col">Deaths</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -74,22 +82,19 @@
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            <table class="table table-hover table-dark table-responsive-md">
+                            <table class="table table-hover table-dark table-responsive" id="resources">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">Name of Organization</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">Contact</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
