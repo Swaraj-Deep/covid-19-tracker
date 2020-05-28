@@ -62,7 +62,7 @@ def get_state_district_wise_data() -> 'JSON':
                 temp_state["district_data"] = temp_district_data
             list_states.append(temp_state)
             temp_dist_deltas["delta"] = list_deltas
-            list_deltas_dist.append (temp_dist_deltas)
+            list_deltas_dist.append(temp_dist_deltas)
         state_data = []
         for item in list_states:
             temp_dict = {}
@@ -135,4 +135,11 @@ def get_hospital_beds() -> "JSON":
 
 if __name__ == "__main__":
     lst = get_state_district_wise_data()
-    # print (lst[0])
+    print('[', end='')
+    for items in lst[0]:
+        if items['state'] != 'State Unassigned' and items['state'] != 'Other State':
+            print(f'\"{items["state"]}\"', end=', ')
+        for item in items['delta']:
+            if item['district'] != 'Unknown' and item['district'] != 'Other State' and item['district'] != 'Unknown' and item['district'] != 'Unassigned':
+                print(f"\"{item['district']}\"", end=', ')
+    print(']')

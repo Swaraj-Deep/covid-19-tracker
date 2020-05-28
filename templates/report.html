@@ -1,5 +1,9 @@
 {% extends 'index.html' %}
 
+{% block style %}
+<link rel="stylesheet" href="/static/css/report.css">
+{% endblock %}
+
 {% block body %}
 <div id="alert-wrapper">
 
@@ -63,7 +67,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -94,7 +98,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -104,6 +108,17 @@
         </div>
     </div>
 </div>
+
+<div class="container-fluid text-center px-3" id="ref_nav">
+    <div class="input-group  px-5 py-3">
+        <input type="text" class="form-control" placeholder="Search for your state or district"
+            aria-label="state or district name" aria-describedby="state_district_name" id="search">
+        <div class="input-group-append">
+            <button class="btn btn-outline-success" type="button" id="state_district_name">Search</button>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block jquery %}
