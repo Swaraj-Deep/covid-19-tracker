@@ -27,3 +27,8 @@
     background-color: rgba(162, 167, 172, 0.178) !important;
     color: #000000;
 }
+
+.autocomplete-inactive {
+    /* background-color: rgba(162, 167, 172, 0.178) !important; */
+    color: #000000;
+}
