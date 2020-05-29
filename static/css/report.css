@@ -4,7 +4,7 @@
     z-index: 99;
     top: 100%;
     width: 50%;
-    height: 100px;
+    height: 150px;
     left: 0;
     right: 0;
     padding-left:inherit;
@@ -20,15 +20,5 @@
 }
 
 .autocomplete-items div:hover {
-    background-color: rgba(162, 167, 172, 0.178) ;
-}
-
-.autocomplete-active {
     background-color: rgba(162, 167, 172, 0.178) !important;
-    color: #000000;
-}
-
-.autocomplete-inactive {
-    /* background-color: rgba(162, 167, 172, 0.178) !important; */
-    color: #000000;
 }

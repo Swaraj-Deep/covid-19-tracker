@@ -97,12 +97,42 @@ def resource_state(state_name) -> 'list':
 
 
 @app.route('/__get_state_data_for_report__', methods=['POST'])
-def det_state_data_for_report() -> 'json':
+def get_state_data_for_report() -> 'json':
     try:
         state_name = request.json['Data']
         response = {
             'data_state': state_delta(state_name),
             'data_resource': resource_state(state_name)
+        }
+    except Exception as e:
+        print(e)
+    return make_response(jsonify(response), 200)
+
+
+def data_dis_state(dis_state_name) -> 'list':
+    dis_state_name = dis_state_name()
+    district_data = datapoint.scraper.get_state_district_wise_data()
+    district_data_delta = district_data[0]
+    print (district_data_delta)
+    state_data = district_data[2]
+
+
+def resource_state_dis(dis_state_name) -> 'list':
+    dis_state_name = dis_state_name.lower()
+    global detailed_resources_data
+    if len(detailed_resources_data) == 0:
+        detailed_resources_data = datapoint.scraper.get_resources()[
+            "resources"]
+    list_resource_data = []
+    
+
+
+@app.route('/__get_data_for_report', methods=['POST'])
+def get_data_for_report() -> 'json':
+    try:
+        print(request.json['Data'])
+        response = {
+            'data': 'Success'
         }
     except Exception as e:
         print(e)

@@ -109,12 +109,28 @@
     </div>
 </div>
 
-<div class="container-fluid text-center px-3" id="ref_nav">
-    <div class="input-group  px-5 py-3">
-        <input type="text" class="form-control" placeholder="Search for your state or district"
-            aria-label="state or district name" aria-describedby="state_district_name" id="search">
-        <div class="input-group-append">
-            <button class="btn btn-outline-success" type="button" id="state_district_name">Search</button>
+<div class="container-fluid text-center px-3" id="ref_nav" hidden='true'>
+    <div class="row">
+        <div class="col-sm py-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Generate Report</h5>
+                    <h6 class="card-subtitle mb-2">Search your state or district name in the text box.</h6>
+                    <p class="card-text text-secondary">
+                        Type your state or district name in the search box and press the search button to get a detailed
+                        report on the page.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm py-3 ">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for your state or district"
+                    aria-label="state or district name" aria-describedby="state_district_name" id="search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="button" id="state_district_name">Search</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
