@@ -123,7 +123,13 @@ $(document).ready(function () {
                         return false;
                     } else if (response.status === 200) {
                         response.json().then(function (data) {
-                            console.log(data);
+                            var show_elm = document.getElementById('show-elem');
+                            show_elm.hidden = false;
+                            data_dis_state = data['data_dis_state'];
+                            if (data_dis_state[0]['district_data']) {
+                                
+                            }
+                            resource_state_dis = data['resource_state_dis'];
                         });
                     } else {
                         show_alert(`alert-wrapper`, `Opps! It's our fault.`, `alert-danger`);
