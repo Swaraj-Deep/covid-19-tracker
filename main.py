@@ -110,11 +110,18 @@ def get_state_data_for_report() -> 'json':
 
 
 def data_dis_state(dis_state_name) -> 'list':
-    dis_state_name = dis_state_name()
+    dis_state_name = dis_state_name.lower()
     district_data = datapoint.scraper.get_state_district_wise_data()
-    district_data_delta = district_data[0]
-    print (district_data_delta)
-    state_data = district_data[2]
+    district_data_overall = district_data[1]
+    retdata = []
+    for items in district_data_overall:
+        if items['state'].lower() == dis_state_name:
+            retdata.append(items)
+            return retdata
+        for item in items['district_data']:
+            if item['district'].lower() == dis_state_name:
+                retdata.append(item)
+                return retdata
 
 
 def resource_state_dis(dis_state_name) -> 'list':
@@ -124,15 +131,21 @@ def resource_state_dis(dis_state_name) -> 'list':
         detailed_resources_data = datapoint.scraper.get_resources()[
             "resources"]
     list_resource_data = []
-    
+    for items in detailed_resources_data:
+        if items['state'].lower() == dis_state_name:
+            list_resource_data.append(items)
+        if items['city'].lower() == dis_state_name:
+            list_resource_data.append(items)
+    return list_resource_data
 
 
 @app.route('/__get_data_for_report', methods=['POST'])
 def get_data_for_report() -> 'json':
     try:
-        print(request.json['Data'])
+        name = request.json['Data']
         response = {
-            'data': 'Success'
+            'data_dis_state': data_dis_state(name),
+            'resource_state_dis': resource_state_dis(name)
         }
     except Exception as e:
         print(e)
