@@ -25,10 +25,7 @@ python3 main.py
 
 ## Screen Shots
 
-![Front Page](static/uploads/readme.gif)  
-![Second Page](/static/uploads/confirmed.png)  
-![Third Page](/static/uploads/deceased.png)  
-![Fourth Page](/static/uploads/recovered.png)
+![Overall](static/uploads/readme.gif) 
 
 ## Licence
 
