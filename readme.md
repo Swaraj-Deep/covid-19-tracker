@@ -25,7 +25,7 @@ python3 main.py
 
 ## Screen Shots
 
-![Front Page](/static/uploads/active.png)  
+![Front Page](static/uploads/active.png)  
 ![Second Page](/static/uploads/confirmed.png)  
 ![Third Page](/static/uploads/deceased.png)  
 ![Fourth Page](/static/uploads/recovered.png)
