@@ -130,108 +130,111 @@
                         <input type="text" class="form-control" placeholder="Search for your state or district"
                             aria-label="state or district name" aria-describedby="state_district_name" id="search">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-success" type="button" id="state_district_name">Search</button>
+                            <button class="btn btn-outline-success" type="button"
+                                id="state_district_name">Search</button>
                         </div>
                     </div>
                     </p>
                 </div>
             </div>
-            
+
         </div>
     </div>
-    <div class="row px-3" hidden="true" id="show-elem">
-        <div id="accordion2nd ">
-            <div class="row">
-                <div class="col-sm py-2">
-                    <div class="card">
-                        <div class="card-header" id="headingOne2nd">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne2nd"
-                                    aria-expanded="true" aria-controls="collapseOne2nd">
-                                    Overall state data
-                                </button>
-                            </h5>
-                        </div>
-    
-                        <div id="collapseOne2nd" class="collapse show" aria-labelledby="headingOne2nd" data-parent="#accordion2nd">
-                            <div class="card-body font-weight-bold">
-                                <p class="text-center" id="state2nd">
-    
-                                </p>
-                                <p class="text-center text-danger" id="confirmed2nd">
-    
-                                </p>
-                                <p class="text-center" style="color:rgba(11, 31, 212, 0.705)" id="active2nd">
-    
-                                </p>
-                                <p class="text-center text-success" id="recovered2nd">
-    
-                                </p>
-                                <p class="text-center text-secondary" id="deaths2nd">
-    
-                                </p>
-                            </div>
+    <div id="accordion2nd ">
+        <div class="row">
+            <div class="col-sm py-2">
+                <div class="card" id="overall" hidden="true">
+                    <div class="card-header" id="headingOne2nd">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne2nd"
+                                aria-expanded="true" aria-controls="collapseOne2nd">
+                                Overall condition
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne2nd" class="collapse show" aria-labelledby="headingOne2nd"
+                        data-parent="#accordion2nd">
+                        <div class="card-body font-weight-bold">
+                            <p class="text-center" id="state2nd">
+
+                            </p>
+                            <p class="text-center text-danger" id="confirmed2nd">
+
+                            </p>
+                            <p class="text-center" style="color:rgba(11, 31, 212, 0.705)" id="active2nd">
+
+                            </p>
+                            <p class="text-center text-success" id="recovered2nd">
+
+                            </p>
+                            <p class="text-center text-secondary" id="deaths2nd">
+
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm py-2">
-                    <div class="card">
-                        <div class="card-header" id="headingTwo2nd">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo2nd"
-                                    aria-expanded="false" aria-controls="collapseTwo2nd">
-                                    Check here for today's update
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseTwo2nd" class="collapse" aria-labelledby="headingTwo2nd" data-parent="#accordion2nd">
-                            <div class="card-body">
-                                <table class="table table-hover table-dark table-responsive" id="today_update2nd">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">District</th>
-                                            <th scope="col">Confirmed</th>
-                                            <th scope="col">Recovered</th>
-                                            <th scope="col">Deaths</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-    
-                                    </tbody>
-                                </table>
-                            </div>
+            </div>
+            <div class="col-sm py-2" id="districts" hidden="true">
+                <div class="card">
+                    <div class="card-header" id="headingTwo2nd">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo2nd"
+                                aria-expanded="false" aria-controls="collapseTwo2nd">
+                                Check here for district wise report
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo2nd" class="collapse" aria-labelledby="headingTwo2nd"
+                        data-parent="#accordion2nd">
+                        <div class="card-body">
+                            <table class="table table-hover table-dark table-responsive" id="district_data">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">District</th>
+                                        <th scope="col">Confirmed</th>
+                                        <th scope="col">Active</th>
+                                        <th scope="col">Recovered</th>
+                                        <th scope="col">Deaths</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm py-2">
-                    <div class="card">
-                        <div class="card-header" id="headingThree2nd">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree2nd"
-                                    aria-expanded="false" aria-controls="collapseThree2nd">
-                                    Check for resources in your district
-                                </button>
-                            </h5>
-                        </div>
-                        <div id="collapseThree2nd" class="collapse" aria-labelledby="headingThree2nd" data-parent="#accordion2nd">
-                            <div class="card-body">
-                                <table class="table table-hover table-dark table-responsive" id="resources2nd">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">City</th>
-                                            <th scope="col">Name of Organization</th>
-                                            <th scope="col">Phone Number</th>
-                                            <th scope="col">Contact</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-    
-                                    </tbody>
-                                </table>
-                            </div>
+            </div>
+            <div class="col-sm py-2">
+                <div class="card" id="resources_table" hidden="true">
+                    <div class="card-header" id="headingThree2nd">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                data-target="#collapseThree2nd" aria-expanded="false" aria-controls="collapseThree2nd">
+                                Check for resources in your area
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree2nd" class="collapse" aria-labelledby="headingThree2nd"
+                        data-parent="#accordion2nd">
+                        <div class="card-body">
+                            <table class="table table-hover table-dark table-responsive" id="resources2nd">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">Name of Organization</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">Contact</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -123,13 +123,116 @@ $(document).ready(function () {
                         return false;
                     } else if (response.status === 200) {
                         response.json().then(function (data) {
-                            var show_elm = document.getElementById('show-elem');
-                            show_elm.hidden = false;
                             data_dis_state = data['data_dis_state'];
+                            var active, confirmed, recovered, deaths;
+                            var a_case = 0, c_case = 0, r_case = 0, d_case = 0;
                             if (data_dis_state[0]['district_data']) {
-                                
+                                document.getElementById("districts").hidden = false;
+                                $("#district_data").find("tbody").empty();
+                                var tableRef = document.getElementById('district_data').getElementsByTagName('tbody')[0];
+                                for (var i = 0; i < data_dis_state[0]['district_data'].length; ++i) {
+                                    var newRow = tableRef.insertRow();
+                                    var number = newRow.insertCell(0);
+                                    var district = newRow.insertCell(1);
+                                    confirmed = newRow.insertCell(2);
+                                    active = newRow.insertCell(3);
+                                    recovered = newRow.insertCell(4);
+                                    deaths = newRow.insertCell(5);
+                                    text = document.createTextNode(`${parseInt(i) + 1}`);
+                                    number.appendChild(text);
+                                    text = document.createTextNode(`${data_dis_state[0]['district_data'][i]['district']}`);
+                                    district.append(text);
+                                    text = document.createTextNode(`${data_dis_state[0]['district_data'][i]['confirmed']}`);
+                                    confirmed.append(text);
+                                    text = document.createTextNode(`${data_dis_state[0]['district_data'][i]['active']}`);
+                                    active.append(text);
+                                    text = document.createTextNode(`${data_dis_state[0]['district_data'][i]['recovered']}`);
+                                    recovered.append(text);
+                                    text = document.createTextNode(`${data_dis_state[0]['district_data'][i]['deceased']}`);
+                                    deaths.append(text);
+                                    c_case += parseInt(data_dis_state[0]['district_data'][i]['confirmed']);
+                                    a_case += parseInt(data_dis_state[0]['district_data'][i]['active']);
+                                    r_case += parseInt(data_dis_state[0]['district_data'][i]['recovered']);
+                                    d_case += parseInt(data_dis_state[0]['district_data'][i]['deceased']);
+                                }
+                                // Overall Condition
+                                document.getElementById("overall").hidden = false;
+                                confirmed = document.getElementById("confirmed2nd");
+                                confirmed.innerHTML = "";
+                                var state_name_p = document.getElementById("state2nd");
+                                state_name_p.innerHTML = "";
+                                active = document.getElementById("active2nd");
+                                active.innerHTML = "";
+                                deaths = document.getElementById("deaths2nd");
+                                deaths.innerHTML = "";
+                                recovered = document.getElementById("recovered2nd");
+                                recovered.innerHTML = "";
+                                var text = document.createTextNode(`State: ${data_dis_state[0]['state']}`);
+                                state_name_p.appendChild(text);
+                                text = document.createTextNode(`Confirmed: ${c_case}`);
+                                confirmed.appendChild(text);
+                                text = document.createTextNode(`Active: ${a_case}`);
+                                active.appendChild(text);
+                                text = document.createTextNode(`Recovered: ${r_case}`);
+                                recovered.appendChild(text);
+                                text = document.createTextNode(`Deaths: ${d_case}`);
+                                deaths.appendChild(text);
+                            } else {
+                                document.getElementById("districts").hidden = true;
+                                document.getElementById("overall").hidden = false;
+                                confirmed = document.getElementById("confirmed2nd");
+                                confirmed.innerHTML = "";
+                                var state_name_p = document.getElementById("state2nd");
+                                state_name_p.innerHTML = "";
+                                active = document.getElementById("active2nd");
+                                active.innerHTML = "";
+                                deaths = document.getElementById("deaths2nd");
+                                deaths.innerHTML = "";
+                                recovered = document.getElementById("recovered2nd");
+                                recovered.innerHTML = "";
+                                var text = document.createTextNode(`District: ${data_dis_state[0]['district']}`);
+                                state_name_p.appendChild(text);
+                                text = document.createTextNode(`Confirmed: ${data_dis_state[0]['confirmed']}`);
+                                confirmed.appendChild(text);
+                                text = document.createTextNode(`Active: ${data_dis_state[0]['active']}`);
+                                active.appendChild(text);
+                                text = document.createTextNode(`Recovered: ${data_dis_state[0]['recovered']}`);
+                                recovered.appendChild(text);
+                                text = document.createTextNode(`Deaths: ${data_dis_state[0]['deceased']}`);
+                                deaths.appendChild(text);
+
                             }
+                            // Resource Joining
                             resource_state_dis = data['resource_state_dis'];
+                            $("#resources2nd").find("tbody").empty();
+                            document.getElementById("resources_table").hidden = false;
+                            var tableRef = document.getElementById('resources2nd').getElementsByTagName('tbody')[0];
+                            for (i in resource_state_dis) {
+                                var newRow = tableRef.insertRow();
+                                number = newRow.insertCell(0);
+                                var category = newRow.insertCell(1);
+                                var city = newRow.insertCell(2);
+                                var name_of_organization = newRow.insertCell(3);
+                                var phone_number = newRow.insertCell(4);
+                                var contact = newRow.insertCell(5);
+                                text = document.createTextNode(`${parseInt(i) + 1}`);
+                                number.appendChild(text);
+                                text = document.createTextNode(`${resource_state_dis[i]['category']}`);
+                                category.appendChild(text);
+                                text = document.createTextNode(`${resource_state_dis[i]['city']}`);
+                                city.appendChild(text);
+                                text = document.createTextNode(`${resource_state_dis[i]['nameoftheorganisation']}`);
+                                name_of_organization.appendChild(text);
+                                text = document.createTextNode(`${resource_state_dis[i]['phonenumber']}`);
+                                phone_number.appendChild(text);
+                                var contact_link = document.createElement("a");
+                                contact_link.setAttribute("href", `${resource_state_dis[i]['contact']}`);
+                                contact_link.setAttribute("target", "_blank");
+                                contact_link.className = "text-center text-success";
+                                var linkText = document.createTextNode(`${resource_state_dis[i]['contact']}`);
+                                contact_link.appendChild(linkText);
+                                contact.appendChild(contact_link);
+                            }
                         });
                     } else {
                         show_alert(`alert-wrapper`, `Opps! It's our fault.`, `alert-danger`);
