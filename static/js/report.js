@@ -200,38 +200,43 @@ $(document).ready(function () {
                                 recovered.appendChild(text);
                                 text = document.createTextNode(`Deaths: ${data_dis_state[0]['deceased']}`);
                                 deaths.appendChild(text);
-
                             }
                             // Resource Joining
                             resource_state_dis = data['resource_state_dis'];
-                            $("#resources2nd").find("tbody").empty();
-                            document.getElementById("resources_table").hidden = false;
-                            var tableRef = document.getElementById('resources2nd').getElementsByTagName('tbody')[0];
-                            for (i in resource_state_dis) {
-                                var newRow = tableRef.insertRow();
-                                number = newRow.insertCell(0);
-                                var category = newRow.insertCell(1);
-                                var city = newRow.insertCell(2);
-                                var name_of_organization = newRow.insertCell(3);
-                                var phone_number = newRow.insertCell(4);
-                                var contact = newRow.insertCell(5);
-                                text = document.createTextNode(`${parseInt(i) + 1}`);
-                                number.appendChild(text);
-                                text = document.createTextNode(`${resource_state_dis[i]['category']}`);
-                                category.appendChild(text);
-                                text = document.createTextNode(`${resource_state_dis[i]['city']}`);
-                                city.appendChild(text);
-                                text = document.createTextNode(`${resource_state_dis[i]['nameoftheorganisation']}`);
-                                name_of_organization.appendChild(text);
-                                text = document.createTextNode(`${resource_state_dis[i]['phonenumber']}`);
-                                phone_number.appendChild(text);
-                                var contact_link = document.createElement("a");
-                                contact_link.setAttribute("href", `${resource_state_dis[i]['contact']}`);
-                                contact_link.setAttribute("target", "_blank");
-                                contact_link.className = "text-center text-success";
-                                var linkText = document.createTextNode(`${resource_state_dis[i]['contact']}`);
-                                contact_link.appendChild(linkText);
-                                contact.appendChild(contact_link);
+                            console.log (resource_state_dis.length);
+                            if (resource_state_dis.length > 0) {
+                                $("#resources2nd").find("tbody").empty();
+                                document.getElementById("resources_table").hidden = false;
+                                var tableRef = document.getElementById('resources2nd').getElementsByTagName('tbody')[0];
+                                for (i in resource_state_dis) {
+                                    var newRow = tableRef.insertRow();
+                                    number = newRow.insertCell(0);
+                                    var category = newRow.insertCell(1);
+                                    var city = newRow.insertCell(2);
+                                    var name_of_organization = newRow.insertCell(3);
+                                    var phone_number = newRow.insertCell(4);
+                                    var contact = newRow.insertCell(5);
+                                    text = document.createTextNode(`${parseInt(i) + 1}`);
+                                    number.appendChild(text);
+                                    text = document.createTextNode(`${resource_state_dis[i]['category']}`);
+                                    category.appendChild(text);
+                                    text = document.createTextNode(`${resource_state_dis[i]['city']}`);
+                                    city.appendChild(text);
+                                    text = document.createTextNode(`${resource_state_dis[i]['nameoftheorganisation']}`);
+                                    name_of_organization.appendChild(text);
+                                    text = document.createTextNode(`${resource_state_dis[i]['phonenumber']}`);
+                                    phone_number.appendChild(text);
+                                    var contact_link = document.createElement("a");
+                                    contact_link.setAttribute("href", `${resource_state_dis[i]['contact']}`);
+                                    contact_link.setAttribute("target", "_blank");
+                                    contact_link.className = "text-center text-success";
+                                    var linkText = document.createTextNode(`${resource_state_dis[i]['contact']}`);
+                                    contact_link.appendChild(linkText);
+                                    contact.appendChild(contact_link);
+                                }
+                            } else {
+                                $("#resources2nd").find("tbody").empty();
+                                document.getElementById("resources_table").hidden = true;
                             }
                         });
                     } else {
