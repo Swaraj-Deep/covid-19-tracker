@@ -17,7 +17,7 @@ git clone https://github.com/Swaraj-Deep/covid-19-tracker.git
 
 ## Exceution
 
-Once the repository is cloned go to the webapp folder and run the [main.py](/) file using the following command:
+Once the repository is cloned go to the webapp folder and run the [main.py](/main.py) file using the following command:
 
 ``` bash
 python3 main.py
