@@ -30,3 +30,8 @@ python3 main.py
 ## Licence
 
 [MIT](https://opensource.org/licenses/MIT)
+
+## Credits
+
+api.covid19india.org
+api.rootnet.in
