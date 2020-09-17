@@ -7,7 +7,7 @@ This tracker is made with python which uses data from certain apis. This tracker
 [python version 3.x](https://www.python.org/download/releases/3.0/)  
 [flask version 1.1.x](https://pypi.org/project/Flask/)
 
-## Installment
+## How to Install
 
 Once you have python and flask installed on your system you are ready to go. Clone this repopsitory on your system using the following command:
 
