@@ -33,5 +33,5 @@ python3 main.py
 
 ## Credits
 
-api.covid19india.org
+api.covid19india.org  
 api.rootnet.in
